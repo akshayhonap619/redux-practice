@@ -3,7 +3,7 @@ var path = require("path")
 
 
 module.exports ={
-    entry: "./Components/scroll-effects.js",
+    entry: "./Components/react-scroll-parallax.js",
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname,'public')
