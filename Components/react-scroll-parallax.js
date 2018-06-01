@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import React from 'react'
 import {Avatar, GridList, GridListTile } from '@material-ui/core'
-
+import ClassNames from './Avatar'
 
 const tileData = [
        {
@@ -59,9 +59,17 @@ const ImageGrid = (props)=>(
 )
 
 
+
+const AvatarStyles={
+    width : 160,
+    height :180
+}
+
+
 ReactDOM.render(
     <div> Hello World
-        <Avatar>A K</Avatar>
+        <Avatar styles={AvatarStyles} src="https://picsum.photos/50/50/?random"></Avatar>
+        <ClassNames />
         <ImageGrid/>
     </div>,
     document.getElementById('parallax')
