@@ -40,4 +40,4 @@ app.get('/g',(req,res)=>{
     res.send("Welcome")
 })
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
