@@ -15,7 +15,8 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
         clientID : '257449094800143',
         clientSecret : 'a81b714a11b89d97499fe75fe58d67b9',
-        callbackURL : 'https://a-sample.herokuapp.com/auth/facebook/callback'
+        //callbackURL : 'https://a-sample.herokuapp.com/auth/facebook/callback'
+        callbackURL : 'https://localhost:3000/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, done){
         console.log("Profile is ")
@@ -24,16 +25,16 @@ passport.use(new FacebookStrategy({
 ))
 
 
-//app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'user_birthday']} ));
 
 // Facebook will redirect the user to this URL after approval.  Finish the
 // authentication process by attempting to obtain an access token.  If
 // access was granted, the user will be logged in.  Otherwise,
 // authentication has failed.
+
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { successRedirect: '/g',
-        failureRedirect: '/g' }));
+    passport.authenticate('facebook', { successRedirect: '/',
+        failureRedirect: '/login' }));
 
 
 app.get('/g',(req,res)=>{
