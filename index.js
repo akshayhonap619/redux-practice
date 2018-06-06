@@ -1,10 +1,43 @@
-import {configureStore}from './Store/store'
-import {addItem} from './Actions/items-action'
+/**
+ * Created by Akshay on 6/5/2018.
+ */
+var express = require('express')
+const bodyParsser = require('body-parser')
+const session = require('express-session')
+const passport = require('passport')
+const path = require('path')
+const app = express()
 
-const store = configureStore();
+app.use(express.static(path.resolve(__dirname,'public')))
 
-store.subscribe(()=>console.log(store.getState()))
+const FacebookStrategy = require('passport-facebook').Strategy;
 
-console.log(store.getState())
+passport.use(new FacebookStrategy({
+        clientID : '257449094800143',
+        clientSecret : 'a81b714a11b89d97499fe75fe58d67b9',
+        callbackURL : 'https://localhost:3000/auth/facebook/callback'
+    },
+    function(accessToken, refreshToken, profile, done){
+        console.log("Profile is ")
+        console.log(profile)
+    }
+))
 
-store.dispatch(addItem({name : "Milk", Cost: 100}))
+
+//app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+// Facebook will redirect the user to this URL after approval.  Finish the
+// authentication process by attempting to obtain an access token.  If
+// access was granted, the user will be logged in.  Otherwise,
+// authentication has failed.
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { successRedirect: '/g',
+        failureRedirect: '/g' }));
+
+
+app.get('/g',(req,res)=>{
+    res.send("Welcome")
+})
+
+app.listen(3000)

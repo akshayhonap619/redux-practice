@@ -1,7 +1,12 @@
 import ReactDOM from "react-dom";
 import React from 'react'
-import {Avatar, GridList, GridListTile } from '@material-ui/core'
+import {Avatar, GridList, GridListTile,Typography } from '@material-ui/core'
 import ClassNames from './Avatar'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import ButtonAppBar from './TitleBar'
+
+import ImageGrid from './GridListPhoto'
+import TextData from './TextData'
 
 const tileData = [
        {
@@ -40,12 +45,19 @@ const tileData = [
         cols: 2,
     }]
 
+const profile = [
+    {
+        img: "https://picsum.photos/200/200/?random",
+        title: 'Image',
+        author: 'author'
+
+    }]
+
+/*
+
 const ImageGrid = (props)=>(
-    <div style={{
-        width : "60%",
-        paddingLeft : "640px"
-    }}>
-        <h1>Images </h1>
+    <div>
+        <Typography align="center" color="default" variant="display1"> What do I look Like! </Typography>
         <div>
         <GridList cols={6} cellHeight={200}>
             {tileData.map((tile, i)=>(
@@ -58,21 +70,35 @@ const ImageGrid = (props)=>(
     </div>
 )
 
+*/
 
 
-const AvatarStyles={
-    width : 160,
-    height :180
-}
+const Main = ()=>(
+    <div className="container-fluid">
+        <ButtonAppBar/>
+        <div className="row">
+            <div className="col-5">
+
+                <br/>
+                <ImageGrid tileData={profile} cellHeight={300}/>
+                <Typography color="default" variant="display1"> John Doe™ </Typography>
+                <TextData/>
+            </div>
+            <div className="col-7">
+                <Typography align="center" color="default" variant="display1"> What do I look Like! </Typography>
+                <ImageGrid tileData={tileData} cols={6} cellHeight={200}/>
+                <Typography color="default" align="center" variant="display1"> Where is the party </Typography>
+
+            </div>
+        </div>
+
+    </div>
+)
 
 
 ReactDOM.render(
-    <div> Hello World
-        <Avatar styles={AvatarStyles} src="https://picsum.photos/50/50/?random"></Avatar>
-        <ClassNames />
-        <ImageGrid/>
-    </div>,
-    document.getElementById('parallax')
+   <Main/>
+    ,document.getElementById('parallax')
 )
 
 
