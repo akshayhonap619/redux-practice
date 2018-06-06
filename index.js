@@ -15,8 +15,8 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
         clientID : '257449094800143',
         clientSecret : 'a81b714a11b89d97499fe75fe58d67b9',
-        //callbackURL : 'https://a-sample.herokuapp.com/auth/facebook/callback'
-        callbackURL : 'https://localhost:3000/auth/facebook/callback'
+        callbackURL : 'https://a-sample.herokuapp.com/auth/facebook/callback'
+        //callbackURL : 'https://localhost:3000/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, done){
         console.log("Profile is ")
