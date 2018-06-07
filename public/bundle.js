@@ -61831,6 +61831,7 @@ var TextData = function TextData(props) {
                         null,
                         ' '
                 ),
+                _react2.default.createElement('img', { src: 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2050016308373104&height=50&width=50&ext=1528598270&hash=AeTveYW-YX5wVeSM' }),
                 _react2.default.createElement(
                         'a',
                         { href: '/auth/facebook' },

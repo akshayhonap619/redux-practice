@@ -13,7 +13,6 @@ import React from 'react'
 
         <Typography > </Typography>
 
-
         <a href="/auth/facebook"> FaceBook Login </a>
 
     </div>
