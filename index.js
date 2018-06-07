@@ -25,7 +25,7 @@ passport.use(new FacebookStrategy({
 ))
 
 
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} ));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email','user_photos']} ));
 
 // Facebook will redirect the user to this URL after approval.  Finish the
 // authentication process by attempting to obtain an access token.  If
@@ -33,7 +33,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} )
 // authentication has failed.
 
 app.get('/auth/facebook/callback',function (req,res) {
-  passport.authenticate('facebook')
+  passport.authenticate('facebook',{scope: ['email','user_photos']})
   res.send("Succusfull auth")
 });
 
