@@ -38,7 +38,7 @@ app.get('/auth/facebook/callback',
        {
            successRedirect : '/m',
      failureRedirect: '/g',
-     failureFlash: true })
+     failureFlash: true }))
 
 
 
