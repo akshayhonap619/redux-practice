@@ -33,13 +33,21 @@ app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} )
 // access was granted, the user will be logged in.  Otherwise,
 // authentication has failed.
 
-app.get('/auth/facebook/callback',
-      passport.authenticate(('facebook'),
-       {
-           successRedirect : '/m',
-     failureRedirect: '/g',
-     failureFlash: true }))
+app.get('/auth/facebook/callback', function(req, res, next) {
+    passport.authenticate('facebook', function(err, user, info) {
+        if (err) { /res.json({ login: "fb-error"})/ }
+        if (!user) {
+            res.json({ login: "fb-invalid"})
+        } else {
+            req.logIn(user, function(err) {
+                if (err) { res.json({ login: "fb-error"}) }
+                res.json({ login: "fb-valid"});
+            });
+        }
+        res.redirect("/");
 
+    })(req, res, next);
+});
 
 
 app.get('/g',(req,res)=>{
