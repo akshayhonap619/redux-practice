@@ -34,15 +34,13 @@ app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} )
 // authentication has failed.
 
 app.get('/auth/facebook/callback',
-    //   {
-    // failureRedirect: '/g',
-    // failureFlash: true },
+      passport.authenticate(('facebook'),
+       {
+           successRedirect : '/m',
+     failureRedirect: '/g',
+     failureFlash: true })
 
-    function (req,res) {
-        passport.authenticate('facebook')
-    console.log(req.user)
-        res.redirect('/m')
-    })
+
 
 app.get('/g',(req,res)=>{
     res.send("Welcome")
