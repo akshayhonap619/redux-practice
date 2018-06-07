@@ -32,10 +32,12 @@ app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} )
 // access was granted, the user will be logged in.  Otherwise,
 // authentication has failed.
 
-app.get('/auth/facebook/callback',
-  passport.authenticate(('facebook'),{ successRedirect: '/m',
+app.post('/auth/facebook/callback',
+  passport.authenticate(('facebook'),{ 
     failureRedirect: '/g',
-    failureFlash: true }))
+    failureFlash: true }),function (req,res) {
+        res.redirect('/')
+    })
 
 app.get('/g',(req,res)=>{
     res.send("Welcome")
