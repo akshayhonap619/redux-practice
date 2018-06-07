@@ -33,7 +33,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} )
 // authentication has failed.
 
 app.get('/auth/facebook/callback',
-  passport.authenticate(('facebook'),
+  passport.authenticate('facebook'),
     //   {
     // failureRedirect: '/g',
     // failureFlash: true },
@@ -41,7 +41,7 @@ app.get('/auth/facebook/callback',
     function (req,res) {
     console.log(req.user)
         res.redirect('/m')
-    }))
+    })
 
 app.get('/g',(req,res)=>{
     res.send("Welcome")
