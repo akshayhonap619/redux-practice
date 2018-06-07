@@ -22,6 +22,7 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, done){
         console.log("Profile is ")
         console.log(profile)
+
     }
 ))
 
@@ -35,7 +36,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} )
 
 app.get('/auth/facebook/callback', function(req, res, next) {
     passport.authenticate('facebook', function(err, user, info) {
-        if (err) { /res.json({ login: "fb-error"})/ }
+        if (err) { res.json({ login: "fb-error"}) }
         if (!user) {
             res.json({ login: "fb-invalid"})
         } else {
