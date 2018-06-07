@@ -32,14 +32,19 @@ app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} )
 // access was granted, the user will be logged in.  Otherwise,
 // authentication has failed.
 
-app.get('/auth/facebook/callback',function (req,res) {
-  passport.authenticate('facebook',{scope: ['email']})
-  res.send("Succusfull auth")
-});
-
+app.get('/auth/facebook/callback',
+  passport.authenticate(('facebook'),{ successRedirect: '/m',
+    failureRedirect: '/g',
+    failureFlash: true }))
 
 app.get('/g',(req,res)=>{
     res.send("Welcome")
 })
+
+app.get('/m',(req,res)=>{
+    res.send("Success Welcome")
+})
+
+
 
 app.listen(process.env.PORT || 3000)
