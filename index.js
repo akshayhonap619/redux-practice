@@ -33,7 +33,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']} )
 // authentication has failed.
 
 app.get('/auth/facebook/callback',function (req,res) {
-  passport.authentication('facebook')
+  passport.authenticate('facebook')
   res.send("Succusfull auth")
 });
 
